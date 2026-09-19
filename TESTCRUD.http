@@ -1,0 +1,38 @@
+@TESTCRUD_HostAddress = http://localhost:5215
+@productId = 1
+
+### Lista paginata e filtrabile
+GET {{TESTCRUD_HostAddress}}/api/Product?page=1&pageSize=10&search=mouse
+Accept: application/json
+
+###
+### Crea prodotto
+POST {{TESTCRUD_HostAddress}}/api/Product
+Content-Type: application/json
+X-Correlation-ID: manual-test-001
+
+{
+	"name": "Mouse ergonomico",
+	"price": 29.90,
+	"description": "Mouse wireless per lavoro quotidiano"
+}
+
+###
+### Leggi prodotto
+GET {{TESTCRUD_HostAddress}}/api/Product/{{productId}}
+Accept: application/json
+
+###
+### Aggiorna prodotto
+PUT {{TESTCRUD_HostAddress}}/api/Product/{{productId}}
+Content-Type: application/json
+
+{
+	"name": "Mouse ergonomico Pro",
+	"price": 39.90,
+	"description": "Mouse wireless aggiornato"
+}
+
+###
+### Elimina prodotto
+DELETE {{TESTCRUD_HostAddress}}/api/Product/{{productId}}
